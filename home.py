@@ -24,7 +24,6 @@ def app():
                 <li> <b> Random Story Generator: </b> Provide a one-click option to generate random stories with pre-set themes or genres. </li>
                 <li> <b> Genre Selection: </b> Offer different genres like adventure, romance, sci-fi, fantasy, mystery, etc., for users to choose from. </li>
                 <li> <b> Story-Based Image Generation: </b> Automatically generate a unique AI-created image for each story, based on its plot, characters, or setting. This feature allows users to visualize their stories with custom illustrations that align with the narrative, enhancing the storytelling experience. </li>
-                <li> <b> Download/Share Story: </b> Enable users to download the generated story as a PDF or share it via social media/email. </li>
             </ul>
             """
     st.markdown(features_ul, unsafe_allow_html=True)  # Display the features as HTML

@@ -3,6 +3,7 @@ import streamlit as st
 import fetch_data  # Module to fetch data from API
 import pandas as pd  # Library for data manipulation
 import numpy as np  # Library for numerical operations
+from datetime import datetime  # Library for handling datetime conversions
 
 # Define the app function that handles the analytics page
 def app():
@@ -12,21 +13,26 @@ def app():
     json_data = fetch_data.fetch_json_data()  # Get story data in JSON format
     timestamps = fetch_data.get_timestamp(json_data)  # Extract list of timestamps
     
-    # Extracting dates and times from timestamps
-    dates = [timestamp.split(' ')[0] for timestamp in timestamps]  # Get only the date part
-    times = [timestamp.split(' ')[1] for timestamp in timestamps]  # Get only the time part (hour)
-    
+    # Convert timestamps to datetime objects and extract dates and hours
+    datetime_objects = [datetime.strptime(timestamp, '%d/%m/%Y %I:%M %p') for timestamp in timestamps]  # Convert to datetime objects
+    dates = [dt_obj.strftime('%Y-%m-%d') for dt_obj in datetime_objects]  # Convert to 'YYYY-MM-DD' format
+    times = [dt_obj.strftime('%H') for dt_obj in datetime_objects]  # Convert to 24-hour format and extract only the hour part (00, 01, ..., 23)
+
     # Fetch story lengths from the API data
     story_len = fetch_data.get_story_len(json_data)
 
     # Create a DataFrame for easier data manipulation
-    df = pd.DataFrame({'date': dates, 'time': times})
+    df = pd.DataFrame({'date': dates, 'hour': times})
 
     # Calculate the frequency of stories per date
     date_counts = df['date'].value_counts().sort_index()  # Count and sort by date
     
-    # Calculate the frequency of stories per hour
-    time_counts = df['time'].value_counts().sort_index()  # Count and sort by time
+    # Create a list of all 24 hours (00, 01, ..., 23)
+    all_hours = [f"{hour:02d}:00" for hour in range(24)]
+
+    # Calculate the frequency of stories per hour, filling in missing hours with zero count
+    time_counts = df['hour'].value_counts().reindex([f"{hour:02d}" for hour in range(24)], fill_value=0)
+    time_counts.index = [f"{hour}:00" for hour in time_counts.index]  # Format as 00:00, 01:00, etc.
 
     # Plotting the frequency of stories per date using a bar chart
     st.subheader('Frequency of Stories by Date')  # Subheader for date frequency
@@ -38,12 +44,12 @@ def app():
 
     # Plotting the story length distribution with bins of 300
     st.subheader('Story Length Distribution')  # Subheader for story length distribution
-    
+
     # Create bins for story lengths with a range increment of 300
-    bins = np.arange(0, max(story_len) + 300, 300)  # Create bins from 0 to max length + 300
+    story_length_bins = np.arange(0, max(story_len) + 300, 300)  # Create bins from 0 to max length + 300
 
     # Use np.histogram to get the count of stories in each bin
-    counts, bin_edges = np.histogram(story_len, bins=bins)
+    counts, bin_edges = np.histogram(story_len, bins=story_length_bins)
 
     # Create a DataFrame for plotting story length distribution
     story_length_df = pd.DataFrame({
@@ -53,6 +59,7 @@ def app():
 
     # Display a bar chart for story lengths grouped by bins
     st.bar_chart(story_length_df.set_index('Length Range'))  # Set index as length range for chart
+
 
 # Run the app if this file is executed directly
 if __name__ == "__main__":
