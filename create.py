@@ -86,6 +86,7 @@ def app():
             # Save the story details to the database
             with st.spinner("Saving your story..."):
                 timestamp = display_timestamp.fetch_timestamp()  # Get the current timestamp
+                print(timestamp)
 
                 # Save the data using the save_to_airtable function
                 status_code, response_content = save_data.save_to_airtable(
