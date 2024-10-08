@@ -65,7 +65,7 @@ def app():
 
                 prompt += f"The story should be written in {language} using {vocab} vocabulary. Focus on the main character and the plot, without adding any additional characters."
 
-                prompt += "Don't generate any title or anything else. Just generate 3 paragraphs of the story.
+                prompt += "Do not generate any title or anything else. Just generate 3 paragraphs of the story.
                 # Get the AI-generated story
                 ai_story = gen_ai_model.get_gemini_response(prompt)
 
