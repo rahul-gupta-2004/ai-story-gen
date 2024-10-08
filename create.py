@@ -69,11 +69,11 @@ def app():
                 ai_story = gen_ai_model.get_gemini_response(prompt)
 
                 # Generate the image for the story
-                image_prompt = f"Generate an image for the story: {ai_story}. Don't generate a list of story titles. Mention only 1 story title of 3 to 4 words."
+                image_prompt = f"Generate an image for the story: {ai_story}."
                 image = gen_ai_model.generate_image(image_prompt)
 
                 # Generate a title for the story
-                story_title_prompt = f"Generate a title for the story: {ai_story}."
+                story_title_prompt = f"Generate a title for the story: {ai_story}. Don't generate a list of story titles. Mention only 1 story title of 3 to 4 words."
                 story_title = gen_ai_model.get_gemini_response(story_title_prompt).strip()
 
                 # Display the generated story
