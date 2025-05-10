@@ -2,6 +2,8 @@
 
 **Transforming Ideas into Enchanting Tales!**
 
+[View Live Demo](https://story-forge-ai.streamlit.app/)
+
 ## Introduction
 
 **Background Information:**
