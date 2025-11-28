@@ -45,13 +45,12 @@ To create an interactive platform where users can generate, customize, and visua
 
 ## Features
 
-- **Story Customization:**Users can input characters, settings, and themes to shape the story as desired.
-- **Interactive Prompts:**Guided questions help users refine the story's elements.
-- **Random Story Generation:**One-click option for generating random stories based on predefined prompts.
-- **Genre Selection:**Users can choose from various genres like adventure, sci-fi, fantasy, and more.
-- **AI-Generated Images:**Visual representation of stories through AI-generated images to complement the text.
-- **Download/Share Options:**
-  Users can download their stories as PDFs or share them on social media.
+- **Story Customization:** Users can input characters, settings, and themes to shape the story as desired.
+- **Interactive Prompts:** Guided questions help users refine the story's elements.
+- **Random Story Generation:** One-click option for generating random stories based on predefined prompts.
+- **Genre Selection:** Users can choose from various genres like adventure, sci-fi, fantasy, and more.
+- **AI-Generated Images:** Visual representation of stories through AI-generated images to complement the text.
+- **Download/Share Options:** Users can download their stories as PDFs or share them on social media.
 
 ## Project Outcomes
 
@@ -73,3 +72,4 @@ To create an interactive platform where users can generate, customize, and visua
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [Airtable](https://airtable.com/)
 - [Python](https://www.python.org/)
+
