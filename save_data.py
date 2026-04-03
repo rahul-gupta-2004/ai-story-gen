@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 import requests  # Importing requests library to handle HTTP requests
 import json  # Importing json library to handle JSON data
 
+load_dotenv()
+
 # Airtable API base information
-base_id = 'app0Kqdh73MydcvPy'  # The unique identifier for the Airtable base
-table_id = 'tblVJjI2xOGgQpVQi'  # The unique identifier for the table within the base
-personal_access_token = 'patPfJNPtzOHuF9Xw.a8b362f576229d42a88f8b99ed831b30656143ecd485c05d406c82dcf5a951b1'  # Personal access token for API authentication
+base_id = os.getenv("AIRTABLE_BASE_ID")  # The unique identifier for the Airtable base
+table_id = os.getenv("AIRTABLE_TABLE_ID")  # The unique identifier for the table within the base
+personal_access_token = os.getenv("AIRTABLE_PERSONAL_ACCESS_TOKEN")  # Personal access token for API authentication
 
 # Create headers for the Airtable API
 def create_headers():

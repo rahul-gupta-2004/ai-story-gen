@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 import google.generativeai as genai  # Importing the Google Generative AI library
 import requests  # Importing the requests library for making HTTP requests
+
+load_dotenv()
 
 # Function to get a response from the Gemini AI model
 def get_gemini_response(input_prompt):
     # Configure the API key for accessing the Google Generative AI services
-    genai.configure(api_key='AIzaSyCN8rvxlb7fJ3IGmqMCxybxgBBwib6eBgo')
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
     # Create an instance of the GenerativeModel for the specified model
     model = genai.GenerativeModel('gemini-1.5-flash')
@@ -27,7 +31,7 @@ def generate_image(input_prompt):
     # API URL for the Stable Diffusion model
     API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
     # Authorization header with Bearer token for accessing the API
-    headers = {"Authorization": "Bearer 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"}
+    headers = {"Authorization": f"Bearer {os.getenv('HUGGINGFACE_API_KEY')}"}
     
     # Send a POST request to the API with the input prompt
     response = requests.post(API_URL, headers=headers, json={"inputs": input_prompt})

@@ -1,4 +1,4 @@
-﻿# Story Forge AI
+# Story Forge AI
 
 **Transforming Ideas into Enchanting Tales!**
 
@@ -42,6 +42,26 @@ To create an interactive platform where users can generate, customize, and visua
 - **Airtable:** Used for storing and managing user-generated stories, providing a user-friendly database solution.
 - **Google Gemini API:** Utilized for generating AI-driven story content, enhancing creativity in storytelling.
 - **Hugging Face API:** Employed for image generation capabilities to visualize the stories effectively.
+
+## Setup and Installation
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set up a `.env` file in the project's root directory. The `.env` file is meant to securely hold your sensitive keys and is excluded from source control via `.gitignore`. 
+
+   Make sure to include the proper API keys in the `.env` file as shown below:
+   ```env
+   GEMINI_API_KEY="your_actual_gemini_api_key_here"
+   HUGGINGFACE_API_KEY="your_actual_huggingface_api_key_here"
+   AIRTABLE_BASE_ID="your_actual_airtable_base_id_here"
+   AIRTABLE_TABLE_ID="your_actual_airtable_table_id_here"
+   AIRTABLE_PERSONAL_ACCESS_TOKEN="your_actual_personal_access_token_here"
+   ```
+   
+   *Note: The codebase uses `python-dotenv` to load these keys securely into `os.getenv()`. Ensure your keys are correct.*
 
 ## Features
 

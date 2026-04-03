@@ -1,11 +1,15 @@
+import os
+from dotenv import load_dotenv
 import requests
 import json
 import pandas as pd
 
+load_dotenv()
+
 # Airtable API base information
-base_id = 'app0Kqdh73MydcvPy'  # Base ID for Airtable
-table_id = 'tblVJjI2xOGgQpVQi/'  # Table ID for Airtable
-personal_access_token = 'patPfJNPtzOHuF9Xw.a8b362f576229d42a88f8b99ed831b30656143ecd485c05d406c82dcf5a951b1'  # Personal access token for authentication
+base_id = os.getenv("AIRTABLE_BASE_ID")  # Base ID for Airtable
+table_id = os.getenv("AIRTABLE_TABLE_ID")  # Table ID for Airtable
+personal_access_token = os.getenv("AIRTABLE_PERSONAL_ACCESS_TOKEN")  # Personal access token for authentication
 
 # Create headers for the Airtable API
 def create_headers():
